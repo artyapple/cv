@@ -25,11 +25,15 @@ jobs:
           root_file: |
             cv_en.tex
             cv_de.tex
-      - name: Upload
+      - name: Upload en
         run: |
           aws s3 cp \
           --acl public-read \
-          --exclude "*" \
-          --include "*.pdf" \
-          . \
+          ./cv_en.pdf \
           s3://www.iablokov.dev
+      - name: Upload de
+        run: |
+          aws s3 cp \
+          --acl public-read \
+          ./cv_de.pdf \
+          s3://www.iablokov.dev    

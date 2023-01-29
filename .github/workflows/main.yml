@@ -28,5 +28,5 @@ jobs:
         run: |
           aws s3 cp \
           --acl public-read \
-          ./cv_en.pdf \
+          *.pdf \
           s3://www.iablokov.dev

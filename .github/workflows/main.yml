@@ -24,6 +24,7 @@ jobs:
         with:
           root_file: |
             cv_en.tex
+            cv_de.tex
       - name: Upload
         run: |
           aws s3 cp \

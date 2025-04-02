@@ -1,118 +1,282 @@
-\input{section/conf.tex}
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+%----------------------------------------------------------------------------------------
+%	CLASS CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+%\NeedsTeXFormat{LaTeX2e}
+%\ProvidesClass{developercv}[2019/01/28 Developer CV class v1.0]
+
+%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}} % Pass through any options to the base class
+%\ProcessOptions\relax % Process given options
+
+%\LoadClass{extarticle} % Load the base class
+
+
+%------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{calc} % added
+\usepackage{ragged2e}
+
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+%----------------------------------------------------------------------------------------
+%	FONTS
+%----------------------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+%\usepackage[default]{raleway}
+%\usepackage[defaultsans]{droidsans}
+%\usepackage{cmbright}
+%\usepackage{fetamont}
+%\usepackage[default]{gillius}
+%\usepackage{roboto}
+
+%\renewcommand*\familydefault{\sfdefault} % Force the sans-serif version of any font used
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.5in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    \begin{minipage}[t]{0.99\linewidth} % Adjust the width as needed
+      {#1}
+    \end{minipage}
+    \vspace{1pt} % Adjust the space between elements as needed
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheadingLeftOneRow}[2]{% % added
+\begin{description}[leftmargin=!,labelwidth=\widthof{\small\bfseries #1}]
+    \item[\small #1]{\textit{\small  #2}}
+\end{description}
+}
+
+\newcommand{\resumeSubSubheadingLeftTwoRows}[4]{%
+\begin{description}[leftmargin=!,labelwidth=\widthof{\small\bfseries #1}]
+    \item[\small #1]{\textit{\small  #2}}
+    \item[\small #3]{\textit{\small  #4}}
+\end{description}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeCertification}[3]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+     {#1} & #2 \\
+     & \textit{\small#3} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeCertifications}[2]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \small\textbf{#1} & \small#2 \\
+    \end{tabular*}\vspace{-20pt}
+}
+
+%------------------------------------------------
+
+\usepackage{fontawesome} % Required for FontAwesome icons
+
+% Command to output an icon in a black square box with text to the right
+\newcommand{\icon}[3]{% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text
+	\vcenteredhbox{\colorbox{black}{\makebox(#2, #2){\textcolor{white}{\large\csname fa#1\endcsname}}}}% Icon and box
+	\hspace{0.2cm}% Whitespace
+	\vcenteredhbox{\textcolor{black}{#3}}% Text
+}
+
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \begin{document}
 
-% HEADER (name, contact information)
-% ------------------------------------------------------------------------------
-\input{section/header_de.tex}
+\begin{center}
+    \textbf{\huge \scshape Artur Iablokov} \\ \vspace{10pt}
+    \faMobile\hspace{3pt}\small +49-157-32046318 $|$ \faEnvelope\hspace{3pt}\href{mailto:artur.iablokov@gmail.com}{\underline{artur.iablokov@gmail.com}} $|$
+     \faGlobe\hspace{3pt}\href{https://iablokov.dev/}{\underline{iablokov.dev}}\\\vspace{2pt}
+    \faLinkedin\hspace{3pt}\href{https://www.linkedin.com/in/artur-iablokov/}{\underline{linkedin.com/in/artur-iablokov/}} $|$
+    \faGithub\hspace{3pt}\href{https://github.com/artyapple}{\underline{github.com/artyapple}}
+\end{center}
 
-% Exp ---------------------------------------------------------------------
-\begin{minipage}[t]{\textwidth}
-\cvsect{Praxiserfahrungen}
-\begin{entrylist}
-  \entry
-  {03/2018 -- bis heute}
-  {Software Entwickler}
-  {\href{https://dps.de/}{DPS Engineering GmbH, Hamburg}}
-  {Entwicklung eines europaweit führenden Systems im Bereich des Zahlungsverkehrs. >100 Mio. Zahlungen
-24/7 | High Load Backend | >25 Großmandanten (Banken)\\
-Projektbereiche: Inlands- und Auslandszahlungsverkehr, Instant Payments,
-Backoffice, SWIFT, SEPA, MX-Migration, Risiko-Management, Clearing \&
-Settlement, Reporting etc.
-  \noseplist{
-  % \item \textbf{Guided} the foundation of new team: \textbf{wrote} the team charter and \textbf{defined} team processes.
-  % \item \textbf{Acted as Scrum Master.}
-  % \item \textbf{Constructed} a new algorithm for identifying similar entities from different sources.
-    \item Kundenorientierte, agile Backend-Entwicklung unter Zeitdruck
-    \item Analyse, Consulting, Review und Lösung von Problemen bei der
-    Konzeptionierung
-    \item Support des Testteams, technisches und fachliches Mentoring
-    und Ausbildung für Junior Entwickler
-    \item Entwicklung, Refactoring, Optimierung unter vorhandenen Strukturen von Legacy
-    Code
-    }
 
-    \onelinelist{Java, Oracle DB, Git, Docker, Active MQ, JBoss, Jenkins, Kubernetes}
-  }
-  \entry
-  {02/2014 -- 02/2018}
-  {Junior Software Ingenieur}
-  {\href{https://envidatec.com/en/}{Envidatec GmbH, Hamburg}}
-  { Entwicklung der Energieüberwachungssoftware My-JEVis, mit der sich Verbrauch, Produktionsdaten und Kosten einfach und kostengünstig kontrollieren lassen.
-    \noseplist{
-    % \item \textbf{Guided} the foundation of new team: \textbf{wrote} the team charter and \textbf{defined} team processes.
-    % \item \textbf{Acted as Scrum Master.}
-    % \item \textbf{Constructed} a new algorithm for identifying similar entities from different sources.
-    \item Energiemonitoring Software - Backend \& Frontend Entwicklung
-    \item Wartung, Deployment, Tests
-    \item Analyse von Kundendaten, Einrichtung der Messtechnik
-    }
+%-----------EXPERIENCE-----------
+\section{Berufserfahrung}
+  \resumeSubHeadingListStart
+  
+      \resumeSubheading
+      {Senior Software Entwickler}{Apr. 2023 -- bis heute}
+      {Lufthansa Industry Solutions AS GmbH}{Hamburg, Deutschland}
+      \resumeItemListStart
+        \resumeItem{Konzeption und Design einer skalierbaren Greenfield-Anwendung für digitale Produktpässe gemäß den EU-Vorgaben sowie Führung und Mentoring eines Backend-Entwicklungsteams mit 3 Entwicklern}
+        \resumeItem{Entwicklung von Backend-Microservices für Dateispeicherung, Produktionsdatenmanagement, Blockchain-Integration, API-Gateway und weitere zentrale Dienste mit Go, NestJS, MongoDB, Redis und verschiedenen Azure-Diensten}
+        \resumeItem{Deployment der Microservices mittels Docker, Kubernetes, GitLab-CI und ArgoCD sowie Implementierung eines Monitoring-Systems mit Prometheus und Grafana}
+        \resumeItem{Entwicklung wiederverwendbarer Go-Bibliotheken für Fehlerbehandlung, Logging, AMQP-Messaging, Authentifizierung (OIDC \& ApiKey) sowie Autorisierung mit RedHat SSO, die in drei unabhängigen Projekten innerhalb des Unternehmens erfolgreich eingesetzt werden}
+    \resumeItemListEnd
+    
 
-    \onelinelist{Java, Spring, MySql, Angular}
-  }
-\end{entrylist}
-\end{minipage}
-% EDU -----------------------------------------------------------
-\begin{minipage}[t]{0.5\textwidth}
-  \cvsect{Education}
-\begin{entrylist}
-  \otherentry {09/2014 -- 08/2019} {B.A. in Technische Informatik} {\href{https://www.haw-hamburg.de/en/}{Hochschule für Angewandte Wissenschaften Hamburg }} {
-    Fortgeschrittene Themen in den Bereichen Software-Engineering, verteilte Systeme, eingebettete Systeme und Netzwerke.\\
-Abschlussarbeit: {\href{https://docplayer.org/204520791-Bachelorarbeit-artur-iablokov-kostenanalyse-einer-blockchain-basierten-iot-infrastruktur-mit-ethereum-und-swarm.html}{\emph{Kostenanalyse einer Blockchain-basierten IoT- Infrastruktur mit Ethereum und Swarm}}}
-    %\link{https://docplayer.org/204520791-Bachelorarbeit-artur-iablokov-kostenanalyse-einer-blockchain-basierten-iot-infrastruktur-mit-ethereum-und-swarm.html}{Thesis:}
-    %\emph{Analysis of a blockchain-based IoT infrastructure with Ethereum and Swarm}
-  }
-  \\
-  \otherentry {09/2007 -- 06/2012} {B.A. in Management} {\href{https://en.unecon.ru/}{St. Petersburg State University of Economics}} {
-    Theoretische Grundlagen in Mathematik, Wirtschaftswissenschaften, Informationstechnologie und Geschäftsprozessmanagement.
-  }
-\end{entrylist}
+    \resumeSubheading
+      {Software Entwickler}{März 2018 -- März 2023}
+      {DPS Engineering GmbH}{Hamburg, Deutschland}
+      \resumeItemListStart
+        \resumeItem{Entwurf und Implementierung von über 50 Funktionen für ein führendes europäisches Zahlungssystem, das rund um die Uhr über 100 Millionen Transaktionen für mehr als 25 Großbanken verarbeitet, einschließlich Themen wie Instant Payments, Geldwäscheprävention, SWIFT, SEPA, MX-Migration, Clearing \& Settlement und Reporting}
+        \resumeItem{Kundenorientierte, agile Backend-Entwicklung unter hohem Zeitdruck mit Java, Oracle DB, Active MQ und JBoss, einschließlich der Neu- und Weiterentwicklung, des Refactorings sowie der Optimierung von Legacy-Code zur Steigerung von Leistung und Zuverlässigkeit}
+        \resumeItem{Aktive Mitarbeit im Requirements Engineering für über 15 Funktionen und enge Zusammenarbeit mit Stakeholdern aus verschiedenen Ländern, um effiziente und wirtschaftliche Lösungen zu entwickeln}
+        \resumeItem{Unterstützung des Testteams durch die Durchführung von End-to-End-Tests und die Bearbeitung komplexer Szenarien}
+        \resumeItem{Betreuung und Mentoring von Junior-Entwicklern sowie Unterstützung beim Onboarding, um einen reibungslosen Einstieg und eine schnelle Einarbeitung sicherzustellen}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Junior Software Entwickler}{Feb. 2014 -- Feb. 2018}
+      {Envidatec GmbH}{Hamburg, Deutschland}
+      \resumeItemListStart
+        \resumeItem{Entwicklung von Backend- und Frontend-Komponenten einer Energiemonitoring-Software mit Java, Spring, Angular und MySQL}
+        \resumeItem{Verwaltung von Aufgaben im Software-Lebenszyklus, einschließlich Wartung, Leistungsoptimierung, Deployment (Docker, Jenkins) sowie umfassender Unit- und Integrationstests}
+        \resumeItem{Analyse von Energiedaten der Kunden und Einrichtung von Messgeräten}
+    \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Ausbildung}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Hochschule für Angewandte Wissenschaften Hamburg}{Sep. 2014 -- Sep. 2019}
+      {Bachelor of Science in Computer Engineering}{Hamburg, Deutschland}
+      \resumeSubSubheadingLeftOneRow
+      {\textit{Schwerpunkt}:}{Softwareentwicklung, verteilte Systeme und eingebettete Systeme}
+  \resumeSubHeadingListEnd
+
+\section{Zertifikate}
+\resumeSubHeadingListStart
+  \resumeCertifications
+    {Kubernetes and Cloud Native Associate (KCNA)}{ausgestellt von The Linux Foundation in Feb. 2025}
+  \resumeCertifications
+    {AWS Certified Cloud Practitioner}{ausgestellt von Amazon Web Services (AWS) in Okt. 2022}
+  \resumeCertifications
+    {ISTQB Certified Tester Foundation Level}{ausgestellt von iSQI GmbH in Juli 2017}
+\resumeSubHeadingListEnd
+
+
+
+\begin{minipage}[t]{0.68\textwidth}\vspace{16pt}
+  %-----------PROGRAMMING SKILLS-----------
+    \section{IT-Kenntnisse}
+    \begin{itemize}[leftmargin=0.15in, label={}]\vspace{-5pt}
+        \small{\item{
+            \textbf{Programmierung}{: Go, Java, Spring Boot, SQL} \\
+            \textbf{Datenbanken}{: PostgreSQL, MongoDB, Redis, Oracle DB}\\
+            \textbf{Web}{: REST, gRPC, GraphQL, OpenAPI}\\
+            \textbf{Deployment und CI/CD}{: Docker, Kubernetes, GitLab CI/CD, ArgoCD}\\
+            \textbf{Verteilte Systeme}{: AMQP, Kafka, Active MQ}\\
+            \textbf{Public cloud und Monitoring}{: Azure, AWS, Prometheus, Grafana} \\
+            \textbf{Sonstiges}{: Git, Keycloak, Maven, Cardano} \\
+        }}
+    \end{itemize}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.45\textwidth}
-  \cvsect{Zertifikate}
-  \begin{entrylist}
-    %AWS Certified Cloud Practitioner”, 10/2022, Amazon Web Services
-    \simpleentry {10/2022} {\href{https://www.credly.com/badges/40fba880-de13-489d-9936-c88cbd59e2d0/}{AWS Certified Cloud Practitioner}} {Amazon Web Services}
-    \simpleentry {02/2022} {\href{https://www.udemy.com/certificate/UC-3d1f5088-e87b-4102-8e59-b39df95a5a84/}{React Native - The Practical Guide}} {Udemy}
-    \simpleentry {07/2017} {\href{https://app.skillsclub.com/credential/26298-c17cec9e406f32f3ca718dc1ef4aae6d20339ce6fc4964f67f030a661d24137d?locale=de&badge=true}{ISTQB Certified Tester Foundation Level}} {iSQI GmbH}
-  \end{entrylist}
+%-----------LANGUAGES-----------
+\begin{minipage}[t]{0.28\textwidth}\vspace{16pt}
+    \section{Fremdsprachen}
+    \begin{itemize}[leftmargin=0.15in, label={}]\vspace{-5pt}
+        \small{\item{
+            \textbf{German}{: C1} \\
+            \textbf{English}{: B2} \\
+            \textbf{Russian}{: Muttersprache}
+        }}
+    \end{itemize}
 \end{minipage}
 
-% Programming languages
-\cvsect{Programmierung \& Tools}
-\input{section/skills.tex}
-
-\begin{minipage}[t]{0.25\textwidth}
-  \vspace{-\baselineskip}
-
-  \cvsect{Sprachen}
-
-  \begin{tabular}{ll}
-    \textbf{Deutsch}   & C1 \\
-    \textbf{Englisch} & B2  \\
-    \textbf{Russisch}    & Muttersprache
-  \end{tabular}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.35\textwidth}
-  \vspace{-\baselineskip}
-
-  \cvsect{Stärken}
-
-  \begin{tabular}{ll}
-    Analyse, logisches Denken,\\Prioritätensetzung, konstruktives Feedback,\\Eigenverantwortung
-  \end{tabular}
-  %analysis, logical reasoning,\\prioritizing, constructive feedback,\newline responsibility
-\end{minipage}
-\begin{minipage}[t]{0.35\textwidth}
-  \vspace{-\baselineskip}
-
-  \cvsect{Interessen}
-  
-  \begin{tabular}{ll}
-    Surfing, Hicking, Rock Konzerte,\\Podcasts, Fussball, Schach
-  \end{tabular}
-  
-\end{minipage}
-
+%-------------------------------------------
 \end{document}
